@@ -83,9 +83,9 @@ Check Apache
 ```sh
 sudo systemctl status apache2
 ```
-Automatically start Apache with WSL
+Optional - Disable automatic start of Apache with WSL
 ```sh
-sudo systemctl enable apache2
+sudo systemctl disable apache2
 ```
 
 ## MariaDB / MySQL (pick one only)
@@ -94,7 +94,7 @@ Install MariaDB or MySQL
 sudo apt install mariadb-server
 sudo apt install mysql-server
 ```
-Start MariaDB with
+Start MariaDB or MySQL with
 ```sh
 sudo systemctl start mariadb
 sudo systemctl start mysql
@@ -117,10 +117,10 @@ Connect to MariaDB / MySQL server
 sudo mariadb -u root -p
 sudo mysql -u root -p
 ```
-Automatically start MariaDB / MySQL with WSL
+Optional - Disable automatic start of MariaDB / MySQL with WSL
 ```sh
-sudo systemctl enable mariadb
-sudo systemctl enable mysql
+sudo systemctl disable mariadb
+sudo systemctl disable mysql
 ```
 
 ## PHP
@@ -147,6 +147,7 @@ sudo apt-get install phpmyadmin
 ## Create a user with all privileges in MariaDB / MySQL
 Since `root` is remotely disabled in MariaDB / MySQL, we need to create a new user with all privileges
 ```sh
+sudo mariadb -u root -p
 sudo mysql -u root -p
 ```
 And run (replace `USER` and `PASSWORD`)
