@@ -177,7 +177,7 @@ Now, you can login to the database with the new user.
 
 In order to make it easier to edit from Windows, run
 ```sh
-sudo chmod 777 /etc/phpmyadmin/config.inc.php
+sudo chown <username> /etc/phpmyadmin/config.inc.php
 ```
 Edit, with the text editor of your choice, `/etc/phpmyadmin/config.inc.php`
 - Find `$cfg['Servers'][$i]['auth_type'] = 'cookie';`
@@ -195,11 +195,6 @@ Edit, with the text editor of your choice, `/etc/phpmyadmin/config.inc.php`
     $cfg['Servers'][$i]['password'] = 'mariadb';
     ```
 - Save
-
-Revert to the original permissions
-```sh
-sudo chmod 644 /etc/phpmyadmin/config.inc.php
-```
 
 # Commands for controlling the LAMP stack
 
