@@ -1,26 +1,27 @@
-# Table of Contents
+# Table of contents
 
 - [Prerequisites](#prerequisites)
 - [LAMP Setup](#lamp-setup)
 - [Installation](#installation)
-  * [Apache](#apache)
-    + [Useful commands](#useful-commands)
-  * [MariaDB / MySQL (pick one only)](#mariadb--mysql-pick-one-only)
-    + [Useful commands](#useful-commands-1)
-  * [PHP](#php)
-  * [phpMyAdmin](#phpmyadmin)
-  * [Create a user with all privileges in MariaDB / MySQL](#create-a-user-with-all-privileges-in-mariadb--mysql)
-    + [Optional - Configure Auto-login in phpMyAdmin](#optional---configure-auto-login-in-phpmyadmin)
+  - [Apache](#apache)
+    - [Useful commands](#useful-commands)
+  - [MariaDB / MySQL (pick one only)](#mariadb--mysql-pick-one-only)
+    - [Useful commands](#useful-commands)
+  - [PHP](#php)
+  - [phpMyAdmin](#phpmyadmin)
+  - [Reclaim ownership of /var/www/html](#reclaim-ownership-of-varwwwhtml)
+  - [Create a user with all privileges in MariaDB / MySQL](#create-a-user-with-all-privileges-in-mariadb--mysql)
+    - [Optional - Configure Auto-login in phpMyAdmin](#optional---configure-auto-login-in-phpmyadmin)
 - [Commands for controlling the LAMP stack](#commands-for-controlling-the-lamp-stack)
-  * [Start](#start)
-  * [Check](#check)
-  * [Stop](#stop)
-  * [Optional - Set up aliases for shorter commands](#optional---set-up-aliases-for-shorter-commands)
+  - [Start](#start)
+  - [Check](#check)
+  - [Stop](#stop)
+  - [Optional - Set up aliases for shorter commands](#optional---set-up-aliases-for-shorter-commands)
 - [Additional stuff (Git, NodeJS, Composer, Symfony CLI)](#additional-stuff-git-nodejs-composer-symfony-cli)
-  * [Git](#git)
-  * [NodeJS](#nodejs)
-  * [Composer](#composer)
-  * [Symfony CLI](#symfony-cli)
+  - [Git](#git)
+  - [NodeJS](#nodejs)
+  - [Composer](#composer)
+  - [Symfony CLI](#symfony-cli)
 - [Backup WSL](#backup-wsl)
 
 <!-- ## Language
@@ -142,6 +143,13 @@ sudo systemctl restart apache2
 sudo apt-get install phpmyadmin
     #> In the next step, select "apache2" by pressing the spacebar.
     #> Select “Yes” when asked whether to use dbconfig-common to set up the database.
+```
+
+## Reclaim ownership of /var/www/html
+
+Run the following command (replace `<username>` with the user name in WSL)
+```sh
+sudo chown <username> /var/www/html
 ```
 
 ## Create a user with all privileges in MariaDB / MySQL
