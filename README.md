@@ -1,3 +1,5 @@
+# Table of Contents
+
 - [Prerequisites](#prerequisites)
 - [LAMP Setup](#lamp-setup)
 - [Installation](#installation)
