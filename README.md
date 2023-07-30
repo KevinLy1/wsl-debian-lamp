@@ -72,12 +72,13 @@ Install Apache
 ```sh
 sudo apt install apache2-utils apache2
 ```
-You can check http://localhost/ to see if Apache is running correctly.
 ### Useful commands
 Start Apache
 ```sh
 sudo systemctl start apache2
 ```
+You can check http://localhost/ to see if Apache is running correctly.
+
 Check Apache
 ```sh
 sudo systemctl status apache2
