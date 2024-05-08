@@ -9,7 +9,7 @@
     - [Useful commands](#useful-commands)
   - [PHP](#php)
   - [phpMyAdmin](#phpmyadmin)
-  - [Reclaim ownership of /var/www/html](#reclaim-ownership-of-varwwwhtml)
+  - [Claim ownership of /var/www/html](#claim-ownership-of-varwwwhtml)
   - [Create a user with all privileges in MariaDB / MySQL](#create-a-user-with-all-privileges-in-mariadb--mysql)
     - [Optional - Configure Auto-login in phpMyAdmin](#optional---configure-auto-login-in-phpmyadmin)
 - [Commands for controlling the LAMP stack](#commands-for-controlling-the-lamp-stack)
@@ -17,12 +17,6 @@
   - [Check](#check)
   - [Stop](#stop)
   - [Optional - Set up aliases for shorter commands](#optional---set-up-aliases-for-shorter-commands)
-- [Additional stuff (Git, NodeJS, Composer, Symfony CLI)](#additional-stuff-git-nodejs-composer-symfony-cli)
-  - [Git](#git)
-  - [NodeJS](#nodejs)
-  - [Composer](#composer)
-  - [Symfony CLI](#symfony-cli)
-- [Backup WSL](#backup-wsl)
 
 <!-- ## Language
 
@@ -145,7 +139,7 @@ sudo apt-get install phpmyadmin
     #> Select “Yes” when asked whether to use dbconfig-common to set up the database.
 ```
 
-## Reclaim ownership of /var/www/html
+## Claim ownership of /var/www/html
 
 Run the following command (replace `<username>` with the user name in WSL)
 ```sh
@@ -182,14 +176,14 @@ sudo chown <username> /etc/phpmyadmin/config.inc.php
 Edit, with the text editor of your choice, `/etc/phpmyadmin/config.inc.php`
 - Find `$cfg['Servers'][$i]['auth_type'] = 'cookie';`
 - Replace, with the user and password previously set, by
-    ```
+    ```php
     $cfg['Servers'][$i]['auth_type'] = 'config';
     $cfg['Servers'][$i]['user'] = 'USER';
     $cfg['Servers'][$i]['password'] = 'PASSWORD';
     ```
     
     Example (with a user "mariadb" and password "mariadb")
-    ```
+    ```php
     $cfg['Servers'][$i]['auth_type'] = 'config';
     $cfg['Servers'][$i]['user'] = 'mariadb';
     $cfg['Servers'][$i]['password'] = 'mariadb';
@@ -257,72 +251,3 @@ Restart WSL by running the following command in PowerShell
 wsl --shutdown
 ```
 With these aliases, you can use `lampstatus`, `lampstart`, `lampstop` and `lamprestart`.
-
-# Additional stuff (Git, NodeJS, Composer, Symfony CLI)
-
-## Git
-Installation
-```sh
-sudo apt install git
-git config --global user.name "Your Name"
-git config --global user.email "Your Email"
-git config --global init.defaultBranch main
-git config --global color.ui auto
-git config --global pull.rebase false
-```
-
-Generate SSH key (replace `<YourEmail>`)
-```sh
-ssh-keygen -t ed25519 -C <YourEmail>
-```
-
-To get the SSH key
-```sh
-cat ~/.ssh/id_ed25519.pub
-```
-
-## NodeJS
-For more information, https://github.com/nvm-sh/nvm
-
-```sh
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.4/install.sh | bash
-```
-Then
-```sh
-export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
-```
-
-Install LTS
-```sh
-nvm install --lts
-```
-
-Use LTS (as of this date, LTS is 18.17.0)
-```sh
-nvm use 18.17.0
-```
-
-## Composer
-For more information, https://getcomposer.org/download/
-```sh
-php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
-php -r "if (hash_file('sha384', 'composer-setup.php') === 'e21205b207c3ff031906575712edab6f13eb0b361f2085f1f1237b7126d785e826a450292b6cfd1d64d92e6563bbde02') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
-php composer-setup.php
-php -r "unlink('composer-setup.php');"
-sudo mv composer.phar /usr/local/bin/composer
-```
-
-## Symfony CLI
-For more information, https://symfony.com/download
-```sh
-curl -1sLf 'https://dl.cloudsmith.io/public/symfony/stable/setup.deb.sh' | sudo -E bash
-sudo apt install symfony-cli
-```
-
-# Backup WSL
-
-You can backup your WSL setup with `PowerShell` by running (replace `<username>`)
-```powershell
-wsl --export Debian C:\Users\<username>\Documents\WSL_Backups\debian_backup.tar
-```
