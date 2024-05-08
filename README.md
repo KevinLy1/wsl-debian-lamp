@@ -246,8 +246,4 @@ echo 'alias lampstop="sudo systemctl stop mysql; sudo systemctl stop apache2"' >
 echo 'alias lamprestart="lampstop; lampstart"' >> .bash_aliases
 ```
 
-Restart WSL by running the following command in PowerShell
-```powershell
-wsl --shutdown
-```
 With these aliases, you can use `lampstatus`, `lampstart`, `lampstop` and `lamprestart`.
